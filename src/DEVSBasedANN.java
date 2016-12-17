@@ -70,7 +70,7 @@ public class DEVSBasedANN {
 		JLabel titLab = new JLabel("DEVS BASED ARTIFICIAL NEURAL NETWORK (ANN) PLATFORM");
 		titLab.setFont(new Font("Serif", Font.BOLD, 20));
 		titLab.setForeground(Color.BLUE);
-		JLabel cLab = new JLabel("(c) David Adelani 2014, MSc Project supervised by Prof Mamadou Traore in African University of Science & Technology, Abuja");
+		JLabel cLab = new JLabel("(c) David Ifeoluwa Adelani 2015 - Java GUI tool for Discrete Event System Specification (DEVS) Based Artificial Neural Networks");
 		cLab.setFont(new Font("Serif", Font.BOLD, 10));
 		panUp = new JPanel();
 		panLeft = new JPanel();
@@ -209,9 +209,9 @@ public class DEVSBasedANN {
 		compList = new JList(new String[]{"Standard BP","BP with Momentum", "Silva & Almeida", "Delta-Bar", "QuickProp", "RPROP"});
 		compList2 = new JComboBox(new String[]{"Standard BP","BP with Momentum", "Silva & Almeida", "Delta-Bar", "QuickProp", "RPROP"});
 		actList2 = new JComboBox(new String[]{"Binary Sigmoid","Bipolar Sigmoid", "Hyperbolic Tangent", "Gaussian"});
-		actList2.setPreferredSize(new Dimension(50, 20));
+		actList2.setPreferredSize(new Dimension(50, 30));
 		actList22 = new JList(new String[]{"Binary Sigmoid","Bipolar Sigmoid", "Hyperbolic Tangent", "Gaussian"});
-		compList2.setPreferredSize(new Dimension(20, 20));
+		compList2.setPreferredSize(new Dimension(20, 30));
 		scroller = new JScrollPane(compList);
 		scroller.setPreferredSize(new Dimension(50, 75));
 		scroller2 = new JScrollPane(actList22);
@@ -289,15 +289,12 @@ public class DEVSBasedANN {
 		compPan2.add(new JLabel("-->"));
 		compPan2.add(compare2);
 		
-		//leftDown.add(colPan);
-		//leftDown.add(corPan);
-		
-		leftDown.add(compPan);
 		leftDown.add(compPan2);
-		leftDown.add(new JSplitPane(JSplitPane.VERTICAL_SPLIT,compPan, compPan2));
+		leftDown.add(compPan);
+		leftDown.add(new JSplitPane(JSplitPane.VERTICAL_SPLIT,compPan2, compPan));
 		panLeft.add(leftDown);
 		leftScroller = new JScrollPane(panLeft);
-		leftScroller.setPreferredSize(new Dimension(400, 580));
+		leftScroller.setPreferredSize(new Dimension(400, 600));
 		
 		// Building of DEVS Model View
 		rightUp = new JPanel();
@@ -310,12 +307,12 @@ public class DEVSBasedANN {
 		rightMid = new JPanel();
 		viewScroller = new JScrollPane(rightMid);
 		viewScroller.setBorder(new TitledBorder(new LineBorder(Color.BLUE),"DEVS Model View"));
-		viewScroller.setPreferredSize(new Dimension(550, 270));
+		viewScroller.setPreferredSize(new Dimension(600, 270));
 		panRight.add(viewScroller, BorderLayout.CENTER);
 		
 		// Building of the Result Graph
 		rightDown = new JPanel();
-		rightDown.setPreferredSize(new Dimension(550, 270));
+		rightDown.setPreferredSize(new Dimension(600, 270));
 		rightDown.setBorder(new TitledBorder(new LineBorder(Color.BLUE),"Result Graph"));
 		panRight.add(rightDown, BorderLayout.SOUTH);
 	
@@ -598,11 +595,11 @@ public class DEVSBasedANN {
 						for(int i=0; i<algos.length; i++){
 							String algo = algos[i].toString();
 							if(algo.equals("Standard BP")) apName="BP";
-							else if(algo.equals("BP with Momentum")) apName="MB";
-							else if(algo.equals("Silva & Almeida")) apName="SA";
-							else if(algo.equals("Delta-Bar")) apName="DB";
-							else if(algo.equals("QuickProp")) apName="QP";
-							else apName="RP";
+							else if(algo.equals("BP with Momentum")) apName="MomentumB";
+							else if(algo.equals("Silva & Almeida")) apName="SilvaAlmeida";
+							else if(algo.equals("Delta-Bar")) apName="DeltaBar";
+							else if(algo.equals("QuickProp")) apName="QuickProp";
+							else apName="RPROP";
 							algoShortName.add(apName);
 							sim[i] = new Simulation(apName, trainInput, trainOutput, minError, algo, actf, hiddenNeurons,trainInput.length , sim_time, true);
 							sim[i].start();
@@ -662,10 +659,10 @@ public class DEVSBasedANN {
 					else{
 						for(int i=0; i<acfs.length; i++){
 							String act = acfs[i].toString();
-							if(act.equals("Binary Sigmoid")) apName="BN";
-							else if(act.equals("Bipolar Sigmoid")) apName="BP";
-							else if(act.equals("Hyperbolic Tangent")) apName="HT";
-							else apName="GS";
+							if(act.equals("Binary Sigmoid")) apName="BinarySigmoid";
+							else if(act.equals("Bipolar Sigmoid")) apName="BipolarSigmoid";
+							else if(act.equals("Hyperbolic Tangent")) apName="Tanh";
+							else apName="Gaussian";
 							algoShortName.add(apName);
 							sim[i] = new Simulation(apName, trainInput, trainOutput, minError, algor, act, hiddenNeurons,trainInput.length , sim_time, true);
 							sim[i].start();
@@ -934,7 +931,7 @@ public class DEVSBasedANN {
         chart.setBackgroundPaint(Color.WHITE);
         plot.setOutlinePaint(Color.black);
         final ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+        chartPanel.setPreferredSize(new java.awt.Dimension(600, 270));
         panRight.remove(rightDown);
         panRight.add(chartPanel, BorderLayout.SOUTH);
         panRight.revalidate();
@@ -984,7 +981,7 @@ public class DEVSBasedANN {
         chart.setBackgroundPaint(Color.WHITE);
         plot.setOutlinePaint(Color.black);
         final ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+        chartPanel.setPreferredSize(new java.awt.Dimension(600, 270));
         panRight.remove(rightDown);
         panRight.add(chartPanel, BorderLayout.SOUTH);
         panRight.revalidate();
